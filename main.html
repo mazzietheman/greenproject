@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Main Page</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="communitychallenge.html">Community</a></li>
+                <li><a href="join.html">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <p>This content is only accessible after logging in.</p>
+        <a href="logout.html">Logout</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 New Green Generation. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Check if the user is logged in
+        if (!localStorage.getItem('loggedIn')) {
+            // Redirect to login page if not logged in
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
