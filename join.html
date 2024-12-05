@@ -5,7 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Us - Green Earth Project</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .show-password {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #4CAF50;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
+<script>
+    document.getElementById('join-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData.entries());
+
+        const response = await fetch('/join', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            alert('Thank you for joining us!');
+            this.reset(); // Clear the form
+        } else {
+            alert('There was an error. Please try again.');
+        }
+    });
+</script>
 <body>
     <header>
         <h1>Join Us</h1>
@@ -22,44 +124,32 @@
     <main>
         <h2>Become a Part of Our Mission!</h2>
         <form id="join-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
             
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <div class="show-password">
+                <input type="checkbox" id="showPassword">
+                <label for="showPassword">Show Password</label>
+            </div>
             
             <label for="message">Message:</label>
             <textarea id="message" name="message" required></textarea>
             
             <button type="submit">Join Now</button>
         </form>
-    </main>
 
-    <footer>
-        <p>&copy; 2023 New Green Generation. All rights reserved.</p>
-    </footer>
-
-    <script>
-        document.getElementById('join-form').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-
-            const response = await fetch('/join', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (response.ok) {
-                alert('Thank you for joining us!');
-                this.reset(); // Clear the form
-            } else {
-                alert('There was an error. Please try again.');
-            }
-        });
-    </script>
-</body>
-</html>
+        <section class="article">
+            <h2>Why Join the Green Earth Project?</h2>
+            <p>Joining the Green Earth Project means becoming a part of a dedicated community that is passionate about making a difference. By participating in our initiatives, you will have the opportunity to:</p>
+            <ul>
+                <li>Engage in meaningful community service activities.</li>
+                <li>Learn about sustainable practices that you can implement in your daily life.</li>
+                <li>Network with like-minded individuals who share your commitment to the environment.</li>
+                <li>Be a part of exciting events and workshops focused on recycling and sustainability.</li>
+            </ul>
+            <p>Your involvement can help drive change and inspire others to take action.
