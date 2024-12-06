@@ -86,28 +86,7 @@
         }
     </style>
 </head>
-<script>
-    document.getElementById('join-form').addEventListener('submit', async function(event) {
-        event.preventDefault();
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData.entries());
 
-        const response = await fetch('/join', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
-
-        if (response.ok) {
-            alert('Thank you for joining us!');
-            this.reset(); // Clear the form
-        } else {
-            alert('There was an error. Please try again.');
-        }
-    });
-</script>
 <body>
     <header>
         <h1>Join Us</h1>
@@ -152,4 +131,32 @@
                 <li>Network with like-minded individuals who share your commitment to the environment.</li>
                 <li>Be a part of exciting events and workshops focused on recycling and sustainability.</li>
             </ul>
-            <p>Your involvement can help drive change and inspire others to take action.
+            <p>Your involvement can help drive change and inspire others to take action.</p>
+      </section>
+    </main>
+
+    <script>
+        document.getElementById('join-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+    
+            const response = await fetch('http://localhost:3000/join', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+    
+            if (response.ok) {
+                alert('Thank you for joining us! Please verify your email.');
+                localStorage.setItem('email', data.email); // Store email in local storage
+                window.location.href = 'verify.html'; // Redirect to verify.html
+            } else {
+                alert('There was an error. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
