@@ -36,8 +36,8 @@ const JoinRequest = mongoose.model('JoinRequest', joinSchema);
 const transporter = nodemailer.createTransport({
     service: 'gmail', // Use your email service provider
     auth: {
-        user: 'your-email@gmail.com', // Your email address
-        pass: 'your-email-password' // Your email password or app password
+        user: 'mazzie8079@gmail.com', // Your email address
+        pass: 'Airezz1111$$' // Your email password or app password
     }
 });
 
